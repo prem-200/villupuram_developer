@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquareCode, X, RefreshCw, Send } from './Icons';
-import logoImg from '../assets/new.webp';
+const logoImg = '/logo.webp';
 
 const FAQ_QA = [
   {

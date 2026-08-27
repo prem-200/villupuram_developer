@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Gauge, Search, Sparkles } from './Icons';
-import project1Img from '../assets/project1.svg';
-import project2Img from '../assets/project2.svg';
-import project3Img from '../assets/project3.svg';
+import { ArrowRight, Sparkles, Globe, CheckCircle2, ExternalLink } from './Icons';
+
+import bsrocksImg from '../assets/project_bsrocks.webp';
+import versatileImg from '../assets/project_versatile.webp';
+import synstarImg from '../assets/project_synstar.webp';
 
 export default function Projects({ onContactClick }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -12,38 +13,47 @@ export default function Projects({ onContactClick }) {
   const projectsData = [
     {
       id: 0,
-      title: 'Local Business Website',
-      category: 'Business Website',
-      desc: 'An ultra-modern, high-performance portal designed for an upscale construction and interior architecture firm.',
-      img: project1Img,
+      title: 'BS Rocks Creations',
+      category: 'Event & Talent Organization',
+      url: 'bsrockscreations.com',
+      liveUrl: 'https://bsrockscreations.com/',
+      desc: 'A high-impact event management & world record organization portal built for brand visibility, talent showcases, and national record events.',
+      img: bsrocksImg,
+      techStack: ['React 19 SPA Architecture', 'Talent Showcase Engine', 'Lighthouse 100/100'],
       metrics: [
-        { label: 'Load Speed', value: '0.4s', icon: <Gauge size={14} /> },
-        { label: 'Google Lighthouse', value: '99', icon: <Sparkles size={14} /> },
-        { label: 'SEO Visibility', value: 'Perfect', icon: <Search size={14} /> }
+        { label: 'Speed Score', value: '0.3s ⚡' },
+        { label: 'Lighthouse', value: '100/100' },
+        { label: 'Google SEO', value: 'Rank #1' }
       ]
     },
     {
       id: 1,
-      title: 'Modern E-Commerce Store',
-      category: 'E-Commerce',
-      desc: 'A lightning-fast storefront with custom filtering and glassmorphic micro-interactions built for a local boutique brand.',
-      img: project2Img,
+      title: 'Versatile Business School',
+      category: 'Educational Institute Portal',
+      url: 'versatilebusinessschool.com',
+      liveUrl: 'https://versatilebusinessschool.com/',
+      desc: 'An authoritative higher education & B-School platform featuring course catalogs, student placement statistics, and instant lead inquiry capture.',
+      img: versatileImg,
+      techStack: ['React 19 Clean Modular Code', 'MBA Course Catalog DB', 'Student Placement Stats'],
       metrics: [
-        { label: 'Load Speed', value: '0.6s', icon: <Gauge size={14} /> },
-        { label: 'Google Lighthouse', value: '98', icon: <Sparkles size={14} /> },
-        { label: 'SEO Visibility', value: 'Optimized', icon: <Search size={14} /> }
+        { label: 'Speed Score', value: '0.4s ⚡' },
+        { label: 'Lighthouse', value: '99/100' },
+        { label: 'Mobile UI', value: 'Fluid 60fps' }
       ]
     },
     {
       id: 2,
-      title: 'Professional Service Website',
-      category: 'Business Website',
-      desc: 'A sleek, professional, and SEO-optimized website structured for a local legal consulting and financial advisory firm.',
-      img: project3Img,
+      title: 'Synstar Staffing Agency',
+      category: 'Global HR & Staffing Platform',
+      url: 'synstarstaffing.com',
+      liveUrl: 'https://synstarstaffing.com/',
+      desc: 'A full-stack recruitment & staffing agency portal featuring global candidate tracking, enterprise talent pipelines, and employer inquiries.',
+      img: synstarImg,
+      techStack: ['React 19 Full-Stack', 'Global Talent Pipelines', 'Node.js REST API'],
       metrics: [
-        { label: 'Load Speed', value: '0.3s', icon: <Gauge size={14} /> },
-        { label: 'Google Lighthouse', value: '99', icon: <Sparkles size={14} /> },
-        { label: 'SEO Visibility', value: 'Excellent', icon: <Search size={14} /> }
+        { label: 'API Response', value: '6ms' },
+        { label: 'Lighthouse', value: '100/100' },
+        { label: 'SSL HTTPS', value: 'Verified ✓' }
       ]
     }
   ];
@@ -61,97 +71,152 @@ export default function Projects({ onContactClick }) {
 
   const handleTabClick = (index) => {
     setActiveTab(index);
-    setAutoplay(false); // Disable autoplay on manual click
+    setAutoplay(false);
   };
 
   const currentProject = projectsData[activeTab];
 
   return (
-    <section id="projects" className="projects-section reveal reveal-scale-in">
+    <section id="projects" className="pro-projects-section reveal reveal-scale-in">
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <span className="section-label">04 / SELECTED WORK</span>
-          <h2 className="section-title">BUILT TO IMPRESS.</h2>
-          <p className="section-desc" style={{ margin: '0 auto' }}>
-            Toggle through our premium mockups to preview the responsive layouts, lightning speeds, and customized visual details we deliver.
+        
+        {/* Section Header */}
+        <div className="pro-projects-header">
+          <div className="pro-pill-badge">
+            <Sparkles size={13} color="#f59e0b" />
+            <span>04 / SELECTED WORK</span>
+          </div>
+
+          <h2 className="pro-section-title">
+            REAL CLIENT PLATFORMS.<br />
+            <span className="pro-gradient-text">Engineered For Growth & Authority.</span>
+          </h2>
+          
+          <p className="pro-section-desc">
+            Explore live enterprise platforms delivered for our clients — featuring sub-300ms speed, high-conversion design systems, and Google ranking.
           </p>
         </div>
 
-        {/* Carousel & Tab Layout Container */}
-        <div className="projects-tab-layout">
+        {/* Interactive Real Projects Tab Switcher */}
+        <div className="pro-project-tabs">
+          {projectsData.map((project, index) => {
+            const isActive = activeTab === index;
+            return (
+              <button
+                key={project.id}
+                className={`pro-p-tab-btn ${isActive ? 'active' : ''}`}
+                onClick={() => handleTabClick(index)}
+              >
+                <span className="p-tab-num">0{index + 1}</span>
+                <div className="p-tab-info">
+                  <span className="p-tab-cat">{project.category}</span>
+                  <span className="p-tab-title">{project.title}</span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Main Display Showcase Window */}
+        <div className="pro-project-display-card">
           
-          {/* Left Column: Vertical Tabs */}
-          <div className="project-tab-list">
-            {projectsData.map((project, index) => {
-              const isActive = activeTab === index;
-              return (
-                <button
-                  key={project.id}
-                  className={`project-tab-button ${isActive ? 'active' : ''}`}
-                  onClick={() => handleTabClick(index)}
+          {/* Left Column: Browser Mockup Visual */}
+          <div className="pro-project-visual-col">
+            <div className="pro-mockup-browser">
+              
+              {/* Browser Header Bar */}
+              <div className="browser-bar">
+                <div className="browser-dots">
+                  <span className="b-dot red"></span>
+                  <span className="b-dot yellow"></span>
+                  <span className="b-dot green"></span>
+                </div>
+                <a 
+                  href={currentProject.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="browser-url-box"
                 >
-                  <span className="tab-num">0{index + 1}</span>
-                  <div className="tab-content">
-                    <span className="tab-category">{project.category}</span>
-                    <span className="tab-title">{project.title}</span>
-                  </div>
-                </button>
-              );
-            })}
+                  <Globe size={11} color="#38bdf8" />
+                  <span>https://{currentProject.url}</span>
+                </a>
+              </div>
+
+              {/* Browser Image Container */}
+              <div className="browser-img-wrapper">
+                <a href={currentProject.liveUrl} target="_blank" rel="noopener noreferrer">
+                  <img 
+                    src={currentProject.img} 
+                    alt={currentProject.title} 
+                    className="browser-showcase-img" 
+                    width="700"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+              </div>
+
+            </div>
           </div>
 
-          {/* Right Column: Display Panel */}
-          <div className="project-tab-display">
-            {/* Visual Preview panel */}
-            <div className="project-display-visual">
-              <div className="mock-browser-window">
-                <img 
-                  src={currentProject.img} 
-                  alt={currentProject.title} 
-                  className="mock-browser-img" 
-                  width="600"
-                  height="380"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+          {/* Right Column: Project Info & Performance Telemetry */}
+          <div className="pro-project-info-col">
+            
+            <div className="info-header-tag">
+              <span className="project-category-chip">{currentProject.category}</span>
             </div>
 
-            {/* Info details panel */}
-            <div className="project-display-info">
-              <span className="project-cat">{currentProject.category}</span>
-              <h3 className="project-title">{currentProject.title}</h3>
-              <p className="project-desc">{currentProject.desc}</p>
-              
-              {/* Metrics Grid */}
-              <div className="project-metrics-grid">
-                {currentProject.metrics.map((metric, i) => (
-                  <div key={i} className="metric-box">
-                    <span className="metric-icon">{metric.icon}</span>
-                    <div className="metric-texts">
-                      <span className="metric-val">{metric.value}</span>
-                      <span className="metric-lbl">{metric.label}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <h3 className="project-display-title">{currentProject.title}</h3>
+            
+            <p className="project-display-desc">{currentProject.desc}</p>
 
+            {/* Performance Telemetry Grid */}
+            <div className="pro-telemetry-grid">
+              {currentProject.metrics.map((metric, i) => (
+                <div key={i} className="telemetry-box">
+                  <span className="telemetry-val">{metric.value}</span>
+                  <span className="telemetry-lbl">{metric.label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Tech Stack Pills */}
+            <div className="pro-stack-chips">
+              {currentProject.techStack.map((tech, tIdx) => (
+                <span key={tIdx} className="stack-chip">
+                  <CheckCircle2 size={12} color="#10b981" />
+                  <span>{tech}</span>
+                </span>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="pro-project-actions">
               <a 
-                href="#contact" 
-                className="project-link btn btn-primary" 
-                style={{ alignSelf: 'flex-start', marginTop: 'auto' }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onContactClick();
-                }}
+                href={currentProject.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn btn-outline"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
               >
-                Inquire About Project <ArrowRight size={16} className="btn-icon" />
+                <span>Visit Live Website</span>
+                <ExternalLink size={14} />
               </a>
+
+              <button 
+                className="btn btn-primary" 
+                onClick={onContactClick}
+              >
+                <span>Inquire About Similar Project</span>
+                <ArrowRight size={16} />
+              </button>
             </div>
 
           </div>
 
         </div>
+
       </div>
     </section>
   );

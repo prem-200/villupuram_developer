@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import logoImg from '../assets/new.webp';
+ import React, { useState, useEffect } from 'react';
+const logoImg = '/logo.webp';
 import { ArrowRight, Phone } from './Icons';
 
 export default function Navbar({ onContactClick, activeSection }) {

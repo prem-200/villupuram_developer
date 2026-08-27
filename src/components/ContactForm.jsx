@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Send, Check } from './Icons';
-import logoImg from '../assets/new.webp';
+const logoImg = '/logo.webp';
 
 export default function ContactForm({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
