@@ -1,0 +1,29 @@
+# Villupuram Developer — Comprehensive Documentation
+
+> Full specification and technical capabilities of Villupuram Developer web application agency.
+
+## Overview
+Villupuram Developer is a full-service digital software studio located in Villupuram, Tamil Nadu. We build modern, mobile-first, search-engine-optimized web applications with modern aesthetics and top-tier performance scores.
+
+## Technology Stack
+- Frontend Framework: React 19, Vite 8, Rolldown
+- Styling & Aesthetics: Modern Vanilla CSS with Custom Design Tokens, CSS Grid, Glassmorphism, and GPU-accelerated micro-animations
+- Iconography & Visual Assets: Lucide React, optimized WebP imagery, inline SVG graphics
+- Performance Targets: 100/100 Lighthouse Performance, Accessibility, Best Practices, SEO
+
+## Contact Details
+- Location: Villupuram, Tamil Nadu, India
+- Phone: +91 63793 48861
+- Email: villupuram.developer@gmail.com
+- Web: https://villupuramdeveloper.com
+
+## Key Pages & Sections
+- [Home](http://localhost:5174/#home)
+- [Services](http://localhost:5174/#services)
+- [Why Choose Us](http://localhost:5174/#why-choose-us)
+- [Projects](http://localhost:5174/#projects)
+- [Process](http://localhost:5174/#process)
+- [Local Business](http://localhost:5174/#local-business)
+- [About](http://localhost:5174/#about)
+- [FAQ](http://localhost:5174/#faq)
+- [Contact Form](http://localhost:5174/#contact)
