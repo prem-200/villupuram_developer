@@ -16,14 +16,14 @@ export default function TrustIntro() {
             </div>
             
             {/* Floating Visual Badges */}
-            <div className="floating-element fe-1" style={{ top: '15%', left: '5px' }}>
-              <Code2 size={14} style={{ color: '#f59e0b' }} />
-              <span>Tailored React 19</span>
+            <div className="floating-element trust-fe-1">
+              <Code2 size={15} style={{ color: '#f59e0b' }} />
+              <span>100% Handcrafted Code</span>
             </div>
             
-            <div className="floating-element fe-2" style={{ bottom: '15%', right: '5px' }}>
-              <Sparkles size={14} style={{ color: '#10b981' }} />
-              <span>Glassmorphism UI</span>
+            <div className="floating-element trust-fe-2">
+              <Sparkles size={15} style={{ color: '#10b981' }} />
+              <span>Sub-300ms Ultra Fast</span>
             </div>
           </div>
         </div>

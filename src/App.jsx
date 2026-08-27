@@ -6,6 +6,7 @@ import Services from './components/Services';
 import WhyChooseUs from './components/WhyChooseUs';
 import Projects from './components/Projects';
 import Process from './components/Process';
+import VisualShowcase from './components/VisualShowcase';
 import LocalBusiness from './components/LocalBusiness';
 import About from './components/About';
 import FAQ from './components/FAQ';
@@ -87,6 +88,7 @@ export default function App() {
         <WhyChooseUs />
         <Projects onContactClick={openContact} />
         <Process />
+        <VisualShowcase onContactClick={openContact} />
         <LocalBusiness onContactClick={openContact} />
         <About />
         <FAQ />

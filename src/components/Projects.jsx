@@ -1,30 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Sparkles, Globe, CheckCircle2, ExternalLink } from './Icons';
+import { ArrowRight, Sparkles, Globe, CheckCircle2, ExternalLink, ChevronLeft, ChevronRight } from './Icons';
 
-import bsrocksImg from '../assets/project_bsrocks.webp';
+import rjImg from '../assets/rj (1).png';
 import versatileImg from '../assets/project_versatile.webp';
-import synstarImg from '../assets/project_synstar.webp';
+import synstarImg from '../assets/synstar.png';
 
 export default function Projects({ onContactClick }) {
   const [activeTab, setActiveTab] = useState(0);
-  const [autoplay, setAutoplay] = useState(true);
+  const [isFading, setIsFading] = useState(false);
   const timerRef = useRef(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const projectsData = [
     {
       id: 0,
-      title: 'BS Rocks Creations',
-      category: 'Event & Talent Organization',
-      url: 'bsrockscreations.com',
-      liveUrl: 'https://bsrockscreations.com/',
-      desc: 'A high-impact event management & world record organization portal built for brand visibility, talent showcases, and national record events.',
-      img: bsrocksImg,
-      techStack: ['React 19 SPA Architecture', 'Talent Showcase Engine', 'Lighthouse 100/100'],
-      metrics: [
-        { label: 'Speed Score', value: '0.3s ⚡' },
-        { label: 'Lighthouse', value: '100/100' },
-        { label: 'Google SEO', value: 'Rank #1' }
-      ]
+      title: 'RJ Ventures',
+      category: 'Business & Investment Ventures',
+      url: 'rjventures.in',
+      liveUrl: 'https://rjventures.in/',
+      desc: 'Modern corporate platform built for brand authority, investment portfolio showcases, and direct investor inquiries.',
+      img: rjImg,
+      highlights: [
+        'Multi-Sector Real Estate & Investment Portfolio',
+        'Sub-300ms Speed with Clean React 19 Architecture'
+      ],
+      techStack: ['React 19 SPA', 'Fast CDN Edge', 'Lighthouse 100']
     },
     {
       id: 1,
@@ -32,14 +33,13 @@ export default function Projects({ onContactClick }) {
       category: 'Educational Institute Portal',
       url: 'versatilebusinessschool.com',
       liveUrl: 'https://versatilebusinessschool.com/',
-      desc: 'An authoritative higher education & B-School platform featuring course catalogs, student placement statistics, and instant lead inquiry capture.',
+      desc: 'Academic institute web portal featuring interactive course catalogs, verified placement statistics, and instant lead capture.',
       img: versatileImg,
-      techStack: ['React 19 Clean Modular Code', 'MBA Course Catalog DB', 'Student Placement Stats'],
-      metrics: [
-        { label: 'Speed Score', value: '0.4s ⚡' },
-        { label: 'Lighthouse', value: '99/100' },
-        { label: 'Mobile UI', value: 'Fluid 60fps' }
-      ]
+      highlights: [
+        'Interactive MBA Course Catalog & Placement Records',
+        'Automated Admission Inquiries & 60fps Mobile UX'
+      ],
+      techStack: ['React 19 Modular', 'Course DB', 'Schema SEO']
     },
     {
       id: 2,
@@ -47,31 +47,76 @@ export default function Projects({ onContactClick }) {
       category: 'Global HR & Staffing Platform',
       url: 'synstarstaffing.com',
       liveUrl: 'https://synstarstaffing.com/',
-      desc: 'A full-stack recruitment & staffing agency portal featuring global candidate tracking, enterprise talent pipelines, and employer inquiries.',
+      desc: 'Full-stack international staffing portal with global candidate tracking, employer job desks, and real-time backend APIs.',
       img: synstarImg,
-      techStack: ['React 19 Full-Stack', 'Global Talent Pipelines', 'Node.js REST API'],
-      metrics: [
-        { label: 'API Response', value: '6ms' },
-        { label: 'Lighthouse', value: '100/100' },
-        { label: 'SSL HTTPS', value: 'Verified ✓' }
-      ]
+      highlights: [
+        'Global Candidate & Employer Workflow Pipeline',
+        'High-Speed Node.js REST API with 6ms Latency'
+      ],
+      techStack: ['Full-Stack React', 'Node.js API', 'SSL Verified']
     }
   ];
 
+  const resetAutoCarousel = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      handleNextSlide();
+    }, 5500);
+  };
+
+  const switchSlide = (newIndex) => {
+    setIsFading(true);
+    setTimeout(() => {
+      setActiveTab(newIndex);
+      setIsFading(false);
+    }, 180);
+  };
+
+  const handleNextSlide = () => {
+    setActiveTab((prev) => (prev + 1) % projectsData.length);
+  };
+
+  const handlePrevSlide = () => {
+    setActiveTab((prev) => (prev - 1 + projectsData.length) % projectsData.length);
+    resetAutoCarousel();
+  };
+
+  const handleTabClick = (index) => {
+    if (index === activeTab) return;
+    switchSlide(index);
+    resetAutoCarousel();
+  };
+
   useEffect(() => {
-    if (autoplay) {
-      timerRef.current = setInterval(() => {
-        setActiveTab((prev) => (prev + 1) % projectsData.length);
-      }, 5500);
-    }
+    resetAutoCarousel();
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [autoplay, projectsData.length]);
+  }, [projectsData.length]);
 
-  const handleTabClick = (index) => {
-    setActiveTab(index);
-    setAutoplay(false);
+  // Touch swipe handling for mobile
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
+    if (distance > 40) {
+      // Swiped Left -> Next
+      switchSlide((activeTab + 1) % projectsData.length);
+      resetAutoCarousel();
+    } else if (distance < -40) {
+      // Swiped Right -> Prev
+      switchSlide((activeTab - 1 + projectsData.length) % projectsData.length);
+      resetAutoCarousel();
+    }
+    touchStartX.current = 0;
+    touchEndX.current = 0;
   };
 
   const currentProject = projectsData[activeTab];
@@ -97,7 +142,7 @@ export default function Projects({ onContactClick }) {
           </p>
         </div>
 
-        {/* Interactive Real Projects Tab Switcher */}
+        {/* Interactive Real Projects Tab Switcher (Desktop / Tablet) */}
         <div className="pro-project-tabs">
           {projectsData.map((project, index) => {
             const isActive = activeTab === index;
@@ -117,8 +162,13 @@ export default function Projects({ onContactClick }) {
           })}
         </div>
 
-        {/* Main Display Showcase Window */}
-        <div className="pro-project-display-card">
+        {/* Main Display Showcase Window (Touch-Swipeable on Mobile) */}
+        <div 
+          className={`pro-project-display-card ${isFading ? 'card-transitioning' : ''}`}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           
           {/* Left Column: Browser Mockup Visual */}
           <div className="pro-project-visual-col">
@@ -160,7 +210,7 @@ export default function Projects({ onContactClick }) {
             </div>
           </div>
 
-          {/* Right Column: Project Info & Performance Telemetry */}
+          {/* Right Column: Project Info & Detailed Deliverables */}
           <div className="pro-project-info-col">
             
             <div className="info-header-tag">
@@ -171,21 +221,24 @@ export default function Projects({ onContactClick }) {
             
             <p className="project-display-desc">{currentProject.desc}</p>
 
-            {/* Performance Telemetry Grid */}
-            <div className="pro-telemetry-grid">
-              {currentProject.metrics.map((metric, i) => (
-                <div key={i} className="telemetry-box">
-                  <span className="telemetry-val">{metric.value}</span>
-                  <span className="telemetry-lbl">{metric.label}</span>
-                </div>
-              ))}
+            {/* Core Capabilities & Highlights List */}
+            <div className="pro-project-features-box">
+              <span className="pro-features-heading">CORE CAPABILITIES & HIGHLIGHTS:</span>
+              <ul className="pro-project-feat-list">
+                {currentProject.highlights.map((item, hIdx) => (
+                  <li key={hIdx}>
+                    <CheckCircle2 size={13} color="#10b981" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Tech Stack Pills */}
             <div className="pro-stack-chips">
               {currentProject.techStack.map((tech, tIdx) => (
                 <span key={tIdx} className="stack-chip">
-                  <CheckCircle2 size={12} color="#10b981" />
+                  <CheckCircle2 size={11} color="#f59e0b" />
                   <span>{tech}</span>
                 </span>
               ))}
@@ -215,6 +268,41 @@ export default function Projects({ onContactClick }) {
 
           </div>
 
+        </div>
+
+        {/* Mobile Auto Carousel Navigation & Pagination Bar */}
+        <div className="project-mobile-carousel-bar">
+          <button 
+            className="carousel-arrow-btn" 
+            onClick={handlePrevSlide}
+            aria-label="Previous Project"
+          >
+            <ChevronLeft size={16} />
+          </button>
+
+          {/* Interactive Slide Dots Indicator */}
+          <div className="carousel-dots-group">
+            {projectsData.map((_, idx) => (
+              <button
+                key={idx}
+                className={`carousel-dot ${activeTab === idx ? 'active' : ''}`}
+                onClick={() => handleTabClick(idx)}
+                aria-label={`Go to project ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          <div className="carousel-counter-badge">
+            <span>0{activeTab + 1} / 0{projectsData.length}</span>
+          </div>
+
+          <button 
+            className="carousel-arrow-btn" 
+            onClick={() => { switchSlide((activeTab + 1) % projectsData.length); resetAutoCarousel(); }}
+            aria-label="Next Project"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
 
       </div>

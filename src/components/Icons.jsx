@@ -49,6 +49,8 @@ export const Check = createIcon(<><polyline points="20 6 9 17 4 12" /></>);
 export const MessageSquareCode = createIcon(<><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /><path d="m10 8-2 2 2 2" /><path d="m14 8 2 2-2 2" /></>);
 export const RefreshCw = createIcon(<><path d="M3 12a9 9 0 0 1 15-6.7L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15 6.7L3 16" /><path d="M3 21v-5h5" /></>);
 export const ChevronRight = createIcon(<><path d="m9 18 6-6-6-6" /></>);
+export const ChevronLeft = createIcon(<><path d="m15 18-6-6 6-6" /></>);
+export const ArrowLeft = createIcon(<><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></>);
 export const ShieldCheck = createIcon(<><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.8 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></>);
 export const Clock = createIcon(<><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></>);
 export const MessageSquare = createIcon(<><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></>);

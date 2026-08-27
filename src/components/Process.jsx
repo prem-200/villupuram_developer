@@ -93,7 +93,10 @@ export default function Process() {
           <div className="pro-pipeline-track">
             <div 
               className="pro-pipeline-progress" 
-              style={{ width: `${(activeStep / (steps.length - 1)) * 100}%` }}
+              style={{ 
+                '--progress-percent': `${(activeStep / (steps.length - 1)) * 100}%`,
+                width: `${(activeStep / (steps.length - 1)) * 100}%`
+              }}
             ></div>
           </div>
 

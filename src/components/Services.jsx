@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   ArrowRight, Sparkles, Monitor, ShoppingBag, 
-  Smartphone, Cpu, Gauge, MapPin, CheckCircle2, ChevronRight
+  Smartphone, Cpu, Gauge, CheckCircle2, ChevronRight, Code2
 } from './Icons';
 
 import websiteImg from '../assets/service_website.webp';
@@ -9,7 +9,6 @@ import ecomImg from '../assets/service_ecom.webp';
 import responsiveImg from '../assets/service_responsive.webp';
 import webappImg from '../assets/service_webapp.webp';
 import seoImg from '../assets/service_seo.webp';
-import localImg from '../assets/service_local.webp';
 
 export default function Services({ onContactClick }) {
   const [activeTab, setActiveTab] = useState('all');
@@ -18,13 +17,14 @@ export default function Services({ onContactClick }) {
     { id: 'all', label: 'All Services' },
     { id: 'web', label: 'Websites' },
     { id: 'ecom', label: 'E-Commerce' },
+    { id: 'software', label: 'Custom Software' },
     { id: 'apps', label: 'Custom Apps' },
     { id: 'seo', label: 'SEO & Growth' }
   ];
 
   const servicesData = [
     {
-      num: '01',
+      id: 'web-1',
       category: 'web',
       title: 'Business Websites',
       pillText: 'Speed 100/100',
@@ -39,7 +39,7 @@ export default function Services({ onContactClick }) {
       ]
     },
     {
-      num: '02',
+      id: 'ecom-1',
       category: 'ecom',
       title: 'E-Commerce Stores',
       pillText: 'UPI Checkout Ready',
@@ -54,7 +54,22 @@ export default function Services({ onContactClick }) {
       ]
     },
     {
-      num: '03',
+      id: 'software-1',
+      category: 'software',
+      title: 'Custom Software & ERP',
+      pillText: 'Tailored Business Logic',
+      desc: 'Automated CRM, billing portals, inventory trackers, and internal operational systems.',
+      icon: <Code2 size={18} />,
+      image: webappImg,
+      techTags: ['PostgreSQL DB', 'Workflow Automation', 'Cloud Node.js'],
+      features: [
+        'Bespoke Business Workflow Automation',
+        'Secure Role-Based Admin & Staff Access',
+        'Real-Time Invoicing & Inventory DB'
+      ]
+    },
+    {
+      id: 'web-2',
       category: 'web',
       title: 'Mobile Responsive UX',
       pillText: 'Fluid Viewports',
@@ -69,7 +84,7 @@ export default function Services({ onContactClick }) {
       ]
     },
     {
-      num: '04',
+      id: 'apps-1',
       category: 'apps',
       title: 'Custom Web Apps',
       pillText: 'Full-Stack React & Node',
@@ -84,7 +99,7 @@ export default function Services({ onContactClick }) {
       ]
     },
     {
-      num: '05',
+      id: 'seo-1',
       category: 'seo',
       title: 'SEO & Performance',
       pillText: 'Rank #1 Google',
@@ -96,21 +111,6 @@ export default function Services({ onContactClick }) {
         'Google Search Console Setup',
         'Local Schema Markup & Snippets',
         'llms.txt AI Agent Specification'
-      ]
-    },
-    {
-      num: '06',
-      category: 'seo',
-      title: 'Local Digitalization',
-      pillText: 'Tamil Nadu Focus',
-      desc: 'Regional digital growth empowering businesses in Villupuram, Chennai & Puducherry.',
-      icon: <MapPin size={18} />,
-      image: localImg,
-      techTags: ['Google Maps SEO', 'WhatsApp Lead Trigger'],
-      features: [
-        'Google Business Profile Optimization',
-        'Direct WhatsApp One-Click Trigger',
-        'Multi-Lingual English & Tamil UI'
       ]
     }
   ];
@@ -158,13 +158,12 @@ export default function Services({ onContactClick }) {
         {/* 3-Column Card Grid with Generated Visual Cards */}
         <div className="pro-services-grid">
           {filteredServices.map((service) => (
-            <div key={service.num} className="pro-service-card">
+            <div key={service.id || service.title} className="pro-service-card">
               
-              {/* Generated Service Image Banner */}
+              {/* Generated Service Image Banner (Numbers Removed) */}
               <div className="pro-card-image-box">
                 <img src={service.image} alt={service.title} className="pro-card-bg-img" loading="lazy" width="400" height="225" />
                 <div className="pro-card-image-overlay"></div>
-                <span className="pro-card-num-badge">{service.num}</span>
               </div>
 
               <div className="pro-card-body">
