@@ -1,8 +1,13 @@
- import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 const logoImg = '/logo.webp';
 import { ArrowRight, Phone } from './Icons';
+import { useConfig } from '../context/ConfigContext';
 
 export default function Navbar({ onContactClick, activeSection }) {
+  const { config } = useConfig();
+  const phone = config?.brand?.phone || '+91 63793 48861';
+  const phoneTel = phone.replace(/[^0-9+]/g, '');
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -75,13 +80,13 @@ export default function Navbar({ onContactClick, activeSection }) {
           
           {/* Mobile Only Contact Info inside menu drawer */}
           <li className="mobile-only-contact" style={{ display: 'none', marginTop: '2rem' }}>
-            <a href="tel:+916379348861" className="navbar-contact">
+            <a href={`tel:${phoneTel}`} className="navbar-contact">
               <span className="contact-icon-wrapper">
                 <Phone size={14} />
               </span>
               <div className="contact-details">
                 <span className="contact-talk">Let's Talk</span>
-                <span className="contact-phone">+91 63793 48861</span>
+                <span className="contact-phone">{phone}</span>
               </div>
             </a>
           </li>
@@ -92,13 +97,13 @@ export default function Navbar({ onContactClick, activeSection }) {
         {/* Right: Contact info + Button */}
         <div className="navbar-actions">
           
-          <a href="tel:+916379348861" className="navbar-contact">
+          <a href={`tel:${phoneTel}`} className="navbar-contact">
             <span className="contact-icon-wrapper">
               <Phone size={14} />
             </span>
             <div className="contact-details">
               <span className="contact-talk">Let's Talk</span>
-              <span className="contact-phone">+91 63793 48861</span>
+              <span className="contact-phone">{phone}</span>
             </div>
           </a>
 

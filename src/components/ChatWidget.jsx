@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquareCode, X, RefreshCw, Send } from './Icons';
+import { useConfig } from '../context/ConfigContext';
 const logoImg = '/logo.webp';
 
 const FAQ_QA = [
@@ -60,18 +61,28 @@ const FAQ_QA = [
 ];
 
 export default function ChatWidget() {
+  const { config } = useConfig();
+  const phone = config?.brand?.phone || '+91 63793 48861';
+  const whatsapp = config?.brand?.whatsapp || '916379348861';
+  const agentName = config?.chatWidget?.agentName || 'Senior Developer';
+  const agentRole = config?.chatWidget?.agentRole || 'Lead Technical Architect';
+  const welcomeMsg = config?.chatWidget?.welcomeMessage || "Hi there! 👋 I am your Senior Dev Assistant. Ask me anything about our web engineering capabilities, pricing, timelines, or tech stacks!";
+
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
-      id: 'welcome',
+      id: 1,
       sender: 'bot',
-      text: "Hi there! 👋 I am your Villupuram Developer Assistant. How can we help you build your digital presence today? Select a quick question below, or type your own question in the input box:"
+      text: welcomeMsg,
+      showWhatsApp: false
     }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [unread, setUnread] = useState(true);
   const chatEndRef = useRef(null);
+
+  const whatsappUrl = `https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(config?.chatWidget?.whatsappTemplate || 'Hi Villupuram Developer! I want to discuss a website project.')}`;
 
   useEffect(() => {
     if (chatEndRef.current) {
@@ -92,7 +103,7 @@ export default function ChatWidget() {
       }
     }
     return {
-      text: "Thank you for reaching out! For detailed project pricing and custom requirements, feel free to connect with our developers directly on WhatsApp or phone at +91 63793 48861.",
+      text: `Thank you for reaching out! For detailed project pricing and custom requirements, feel free to connect with our developers directly on WhatsApp or phone at ${phone}.`,
       showWhatsApp: true
     };
   };

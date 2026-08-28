@@ -1,0 +1,138 @@
+{
+  "adminAuth": {
+    "passcode": "Nsprem@200"
+  },
+  "brand": {
+    "name": "Villupuram Developer",
+    "slogan": "Your Idea. Your Website. Your Digital Presence.",
+    "foundedYear": "2024",
+    "phone": "+91 63793 48861",
+    "whatsapp": "+916379348861",
+    "email": "villupuram.developer@gmail.com",
+    "address": "Villupuram • Chennai • Tamil Nadu",
+    "responseTime": "Typical response under 2 hours",
+    "social": {
+      "instagram": "https://instagram.com",
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com"
+    }
+  },
+  "seo": {
+    "metaTitle": "Villupuram Developer | Premier Web & Digital Solutions in Tamil Nadu",
+    "metaDescription": "Full-stack web engineering studio in Villupuram, Tamil Nadu. High-speed React 19 websites, custom e-commerce, UPI payments, and local SEO authority.",
+    "keywords": "Villupuram developer, website design Tamil Nadu, React 19 web development, local business SEO, Chennai web developer",
+    "googleVerificationCode": "google-site-verification-id-here"
+  },
+  "chatWidget": {
+    "enabled": true,
+    "agentName": "Senior Developer",
+    "agentRole": "Direct Technical Lead",
+    "status": "Online • Fast Reply",
+    "welcomeMessage": "Hi there! 👋 Looking to launch or redesign your business website? Ask me anything or request a fast 2-hour estimate!",
+    "whatsappTemplate": "Hi Villupuram Developer! I would like to discuss my project."
+  },
+  "theme": {
+    "accentColor": "#ff6b00",
+    "glowIntensity": "high",
+    "badgeStyle": "cyber-pill"
+  },
+  "hero": {
+    "slides": [
+      {
+        "id": 0,
+        "badge": "VILLUPURAM DEVELOPER — WEB SOLUTIONS",
+        "titleLine1": "WE BUILD DIGITAL",
+        "titleLine2": "EXPERIENCES THAT",
+        "titleGradient": "GROW BUSINESSES.",
+        "desc": "Modern websites and digital solutions built for businesses that want to look professional, reach more customers, and grow online.",
+        "mockupType": "business",
+        "url": "villupuramdeveloper.com"
+      },
+      {
+        "id": 1,
+        "badge": "VILLUPURAM DEVELOPER — MOBILE UI / UX",
+        "titleLine1": "FLUID 60FPS",
+        "titleLine2": "MOBILE-FIRST",
+        "titleGradient": "USER EXPERIENCES.",
+        "desc": "Adaptive fluid viewports, progressive web apps (PWA), and touch-optimized interfaces engineered for flawless mobile engagement.",
+        "mockupType": "mobile",
+        "url": "mobile.villupuramdeveloper.com"
+      },
+      {
+        "id": 2,
+        "badge": "VILLUPURAM DEVELOPER — E-COMMERCE",
+        "titleLine1": "SELL ONLINE WITH",
+        "titleLine2": "HIGH-CONVERTING",
+        "titleGradient": "DIGITAL STORES.",
+        "desc": "Lightning-fast checkout, custom product filters, and secure shopping carts built to turn visitor clicks into customer sales.",
+        "mockupType": "ecommerce",
+        "url": "store.villupuramdeveloper.com"
+      },
+      {
+        "id": 3,
+        "badge": "VILLUPURAM DEVELOPER — CUSTOM APPS",
+        "titleLine1": "TAILORED SYSTEMS",
+        "titleLine2": "BUILT AROUND YOUR",
+        "titleGradient": "SPECIFIC GOALS.",
+        "desc": "Bespoke React applications, administrative dashboards, and secure backend solutions engineered for your operational growth.",
+        "mockupType": "custom",
+        "url": "app.villupuramdeveloper.com"
+      }
+    ]
+  },
+  "services": [
+    {
+      "id": "websites",
+      "num": "01",
+      "title": "Business Websites",
+      "tagline": "Modern, mobile-ready digital presence",
+      "desc": "High-speed corporate and business websites engineered to establish authority, rank on Google, and convert visitors into paying clients.",
+      "turnaround": "4 Days",
+      "badge": "HIGH DEMAND",
+      "features": ["React 19 & Vite 8 SPA", "Lighthouse 100 Performance", "Domain & Cloud Deployment", "Bilingual Tamil & English CMS"]
+    },
+    {
+      "id": "ecommerce",
+      "num": "02",
+      "title": "E-Commerce Storefronts",
+      "tagline": "Custom storefronts with instant checkout",
+      "desc": "Scalable online stores with automated order tracking, multi-category inventory, and native Indian payment gateways.",
+      "turnaround": "6 Days",
+      "badge": "HIGH CONVERSION",
+      "features": ["Instant UPI QR & Razorpay", "Real-Time Inventory Sync", "WhatsApp Order Alerts", "SEO Product Schemas"]
+    },
+    {
+      "id": "webapps",
+      "num": "03",
+      "title": "Custom Web Applications",
+      "tagline": "Tailored software & business portals",
+      "desc": "Full-stack software solutions, customer dashboards, automated billing engines, and internal CRM tools built around your exact operations.",
+      "turnaround": "8-12 Days",
+      "badge": "ENTERPRISE GRADE",
+      "features": ["Role-Based Admin Access", "Real-Time PostgreSQL / Redis", "REST & GraphQL APIs", "Automated PDF Invoicing"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "rj-ventures",
+      "title": "RJ Ventures",
+      "category": "Corporate Portal",
+      "tags": ["React 19", "Cloudflare", "Tailwind"],
+      "liveUrl": "https://rjventures.in"
+    },
+    {
+      "id": "synstar",
+      "title": "Syn Star Staffing",
+      "category": "Global Talent Platform",
+      "tags": ["Full-Stack", "ATS Engine", "Next.js"],
+      "liveUrl": "https://synstarstaffing.com"
+    },
+    {
+      "id": "versatile",
+      "title": "Versatile Business School",
+      "category": "Academic Portal",
+      "tags": ["CMS", "Admission Engine", "SEO #1"],
+      "liveUrl": "https://versatilebschool.com"
+    }
+  ]
+}

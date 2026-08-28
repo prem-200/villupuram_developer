@@ -1,50 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Globe, ShoppingBag, BarChart3, Layout, Layers } from './Icons';
-
-const slidesData = [
-  {
-    id: 0,
-    badge: 'VILLUPURAM DEVELOPER — WEB SOLUTIONS',
-    titleLine1: 'WE BUILD DIGITAL',
-    titleLine2: 'EXPERIENCES THAT',
-    titleGradient: 'GROW BUSINESSES.',
-    desc: 'Modern websites and digital solutions built for businesses that want to look professional, reach more customers, and grow online.',
-    mockupType: 'business',
-    url: 'villupuramdeveloper.com'
-  },
-  {
-    id: 1,
-    badge: 'VILLUPURAM DEVELOPER — MOBILE UI / UX',
-    titleLine1: 'FLUID 60FPS',
-    titleLine2: 'MOBILE-FIRST',
-    titleGradient: 'USER EXPERIENCES.',
-    desc: 'Adaptive fluid viewports, progressive web apps (PWA), and touch-optimized interfaces engineered for flawless mobile engagement.',
-    mockupType: 'mobile',
-    url: 'mobile.villupuramdeveloper.com'
-  },
-  {
-    id: 2,
-    badge: 'VILLUPURAM DEVELOPER — E-COMMERCE',
-    titleLine1: 'SELL ONLINE WITH',
-    titleLine2: 'HIGH-CONVERTING',
-    titleGradient: 'DIGITAL STORES.',
-    desc: 'Lightning-fast checkout, custom product filters, and secure shopping carts built to turn visitor clicks into customer sales.',
-    mockupType: 'ecommerce',
-    url: 'store.villupuramdeveloper.com'
-  },
-  {
-    id: 3,
-    badge: 'VILLUPURAM DEVELOPER — CUSTOM APPS',
-    titleLine1: 'TAILORED SYSTEMS',
-    titleLine2: 'BUILT AROUND YOUR',
-    titleGradient: 'SPECIFIC GOALS.',
-    desc: 'Bespoke React applications, administrative dashboards, and secure backend solutions engineered for your operational growth.',
-    mockupType: 'custom',
-    url: 'app.villupuramdeveloper.com'
-  }
-];
+import { ArrowRight, ArrowLeft, ChevronLeft, ChevronRight, Globe, ShoppingBag, BarChart3, Layout, Layers } from './Icons';
+import { useConfig } from '../context/ConfigContext';
 
 export default function Hero({ onContactClick }) {
+  const { config } = useConfig();
+  const slidesData = config?.hero?.slides || [];
+
   const [activeSlide, setActiveSlide] = useState(0);
   const [isSkeleton, setIsSkeleton] = useState(true);
   const timerRef = useRef(null);
@@ -61,21 +22,35 @@ export default function Hero({ onContactClick }) {
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slidesData.length);
-    }, 6000);
+    }, 6500);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, [slidesData.length]);
 
-  const handleDotClick = (index) => {
-    setActiveSlide(index);
+  const handlePrevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + slidesData.length) % slidesData.length);
+    resetAutoPlay();
+  };
+
+  const handleNextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % slidesData.length);
+    resetAutoPlay();
+  };
+
+  const resetAutoPlay = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = setInterval(() => {
         setActiveSlide((prev) => (prev + 1) % slidesData.length);
-      }, 6000);
+      }, 6500);
     }
+  };
+
+  const handleDotClick = (index) => {
+    setActiveSlide(index);
+    resetAutoPlay();
   };
 
   const scrollToProjects = () => {
@@ -650,10 +625,12 @@ export default function Hero({ onContactClick }) {
         <div className="hero-carousel-wrapper">
           {slidesData.map((slide, index) => {
             const isActive = activeSlide === index;
+            const isReversed = index % 2 !== 0;
+
             return (
               <div 
                 key={slide.id} 
-                className={`hero-slide-item ${isActive ? 'active' : ''}`}
+                className={`hero-slide-item ${isActive ? 'active' : ''} ${isReversed ? 'slide-reversed' : ''}`}
               >
                 {/* Left Slide Info */}
                 <div className="hero-content">
@@ -916,24 +893,37 @@ export default function Hero({ onContactClick }) {
           })}
         </div>
 
-        {/* Slide Pagination Dots Indicator */}
-        <div className="hero-dots-container" style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '2rem' }}>
-          {slidesData.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => handleDotClick(idx)}
-              style={{
-                width: activeSlide === idx ? '24px' : '8px',
-                height: '8px',
-                borderRadius: '4px',
-                background: activeSlide === idx ? 'var(--accent-blue)' : 'rgba(255,255,255,0.2)',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
+        {/* Slide Pagination & Navigation Controls */}
+        <div className="hero-slider-controls">
+          <button 
+            type="button"
+            className="hero-nav-arrow-btn prev"
+            onClick={handlePrevSlide}
+            aria-label="Previous Slide"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          <div className="hero-dots-container">
+            {slidesData.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                className={`hero-slider-dot ${activeSlide === idx ? 'active' : ''}`}
+                onClick={() => handleDotClick(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          <button 
+            type="button"
+            className="hero-nav-arrow-btn next"
+            onClick={handleNextSlide}
+            aria-label="Next Slide"
+          >
+            <ChevronRight size={18} />
+          </button>
         </div>
 
       </div>

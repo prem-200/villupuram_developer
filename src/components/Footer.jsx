@@ -3,19 +3,20 @@ import {
   ArrowRight, Globe, Mail, Phone, MapPin, Sparkles, 
   ArrowUp, ShieldCheck, CheckCircle2, Instagram, Linkedin, Github 
 } from './Icons';
+import { useConfig } from '../context/ConfigContext';
 
 const logoImg = '/logo.webp';
 import footerBg from '../assets/footer_bg.webp';
 
 export default function Footer({ onContactClick }) {
+  const { config } = useConfig();
+  const email = config?.brand?.email || 'villupuram.developer@gmail.com';
+  const address = config?.brand?.address || 'Villupuram • Chennai • Tamil Nadu';
+  const responseTime = config?.brand?.responseTime || 'Typical response under 2 hours';
+
   const handleLinkClick = (e, href) => {
     e.preventDefault();
     
-    if (href === '#contact') {
-      onContactClick();
-      return;
-    }
-
     const target = document.querySelector(href);
     if (target) {
       const offset = 80;
@@ -28,6 +29,8 @@ export default function Footer({ onContactClick }) {
         top: offsetPosition,
         behavior: 'smooth'
       });
+    } else if (href === '#contact') {
+      onContactClick();
     }
   };
 
@@ -41,13 +44,55 @@ export default function Footer({ onContactClick }) {
       style={{ 
         position: 'relative', 
         overflow: 'hidden',
-        backgroundImage: `linear-gradient(to bottom, rgba(7, 8, 12, 0.94), rgba(4, 5, 8, 0.98)), url(${footerBg})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(6, 7, 11, 0.92) 0%, rgba(4, 5, 8, 0.98) 100%), url(${footerBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
     >
       
-      {/* Glow Aura Background Effect */}
+      {/* Procedural Tech Circuit Overlay SVG */}
+      <div 
+        className="footer-circuit-overlay"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          opacity: 0.45,
+          zIndex: 1
+        }}
+      >
+        <svg width="100%" height="100%" viewBox="0 0 1200 600" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="footer-glow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#ff6b00" stopOpacity="0.2" />
+              <stop offset="50%" stopColor="#ffa800" stopOpacity="0.05" />
+              <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+            </linearGradient>
+            <pattern id="footer-grid-pattern" width="50" height="50" patternUnits="userSpaceOnUse">
+              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255, 255, 255, 0.025)" strokeWidth="1"/>
+            </pattern>
+          </defs>
+          
+          <rect width="100%" height="100%" fill="url(#footer-grid-pattern)" />
+          <circle cx="600" cy="200" r="380" fill="url(#footer-glow-grad)" />
+          
+          {/* Circuit Trace Lines */}
+          <g stroke="rgba(255, 107, 0, 0.25)" strokeWidth="1.2" strokeLinecap="round">
+            <path d="M 100 120 H 260 L 300 160 V 320" />
+            <path d="M 1100 450 H 940 L 900 410 V 220" />
+            <path d="M 220 480 H 380 L 420 440 V 300" />
+            <path d="M 980 120 H 820 L 780 160 V 280" />
+          </g>
+          
+          {/* Glowing Circuit Node points */}
+          <circle cx="300" cy="160" r="3.5" fill="#ff6b00" style={{ filter: 'drop-shadow(0 0 6px #ff6b00)' }} />
+          <circle cx="900" cy="410" r="3.5" fill="#ffa800" style={{ filter: 'drop-shadow(0 0 6px #ffa800)' }} />
+          <circle cx="420" cy="440" r="3.5" fill="#ffa800" style={{ filter: 'drop-shadow(0 0 6px #ffa800)' }} />
+          <circle cx="780" cy="160" r="3.5" fill="#ff6b00" style={{ filter: 'drop-shadow(0 0 6px #ff6b00)' }} />
+        </svg>
+      </div>
+
+      {/* Ambient Radial Backlight Glow */}
       <div className="footer-glow-aura"></div>
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
@@ -82,7 +127,7 @@ export default function Footer({ onContactClick }) {
 
             <div className="footer-location-tag">
               <MapPin size={13} color="#f59e0b" />
-              <span>Villupuram • Chennai • Tamil Nadu</span>
+              <span>{address}</span>
             </div>
           </div>
 
@@ -106,6 +151,7 @@ export default function Footer({ onContactClick }) {
               <li><a href="#process" onClick={(e) => handleLinkClick(e, '#process')}>Transparent Workflow</a></li>
               <li><a href="#about" onClick={(e) => handleLinkClick(e, '#about')}>About Our Studio</a></li>
               <li><a href="#faq" onClick={(e) => handleLinkClick(e, '#faq')}>Frequently Asked Questions</a></li>
+              <li><a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}>Contact &amp; Estimate</a></li>
             </ul>
           </div>
 
@@ -113,13 +159,13 @@ export default function Footer({ onContactClick }) {
           <div className="footer-col">
             <h4 className="footer-col-title">Direct Contact</h4>
             <div className="footer-contact-box">
-              <a href="mailto:villupuram.developer@gmail.com" className="footer-contact-link">
+              <a href={`mailto:${email}`} className="footer-contact-link">
                 <Mail size={14} color="#f59e0b" />
-                <span>villupuram.developer@gmail.com</span>
+                <span>{email}</span>
               </a>
               <div className="footer-response-tag">
                 <CheckCircle2 size={12} color="#10b981" />
-                <span>Typical response under 2 hours</span>
+                <span>{responseTime}</span>
               </div>
             </div>
 

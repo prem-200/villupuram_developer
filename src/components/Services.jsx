@@ -3,6 +3,7 @@ import {
   ArrowRight, Sparkles, Monitor, ShoppingBag, 
   Smartphone, Cpu, Gauge, CheckCircle2, ChevronRight, Code2
 } from './Icons';
+import { useConfig } from '../context/ConfigContext';
 
 import websiteImg from '../assets/service_website.webp';
 import ecomImg from '../assets/service_ecom.webp';
@@ -11,6 +12,7 @@ import webappImg from '../assets/service_webapp.webp';
 import seoImg from '../assets/service_seo.webp';
 
 export default function Services({ onContactClick }) {
+  const { config } = useConfig();
   const [activeTab, setActiveTab] = useState('all');
 
   const categories = [
@@ -22,17 +24,20 @@ export default function Services({ onContactClick }) {
     { id: 'seo', label: 'SEO & Growth' }
   ];
 
-  const servicesData = [
+  // Map dynamic services from config or fallback defaults
+  const configServices = config?.services || [];
+
+  const defaultServicesData = [
     {
       id: 'web-1',
       category: 'web',
-      title: 'Business Websites',
-      pillText: 'Speed 100/100',
-      desc: 'High-converting React platforms built for brand authority & sub-300ms load speed.',
+      title: configServices[0]?.title || 'Business Websites',
+      pillText: configServices[0]?.turnaround ? `Delivery: ${configServices[0].turnaround}` : 'Speed 100/100',
+      desc: configServices[0]?.desc || 'High-converting React platforms built for brand authority & sub-300ms load speed.',
       icon: <Monitor size={18} />,
       image: websiteImg,
       techTags: ['React 19', 'Lighthouse 100'],
-      features: [
+      features: configServices[0]?.features || [
         'Custom React SPA Architecture',
         'Mobile-First Responsive Layout',
         'SSL HTTPS & CDN Edge Setup'
@@ -41,13 +46,13 @@ export default function Services({ onContactClick }) {
     {
       id: 'ecom-1',
       category: 'ecom',
-      title: 'E-Commerce Stores',
-      pillText: 'UPI Checkout Ready',
-      desc: 'Modern online storefronts with instant UPI payments, catalog DB & order tracking.',
+      title: configServices[1]?.title || 'E-Commerce Stores',
+      pillText: configServices[1]?.turnaround ? `Delivery: ${configServices[1].turnaround}` : 'UPI Checkout Ready',
+      desc: configServices[1]?.desc || 'Modern online storefronts with instant UPI payments, catalog DB & order tracking.',
       icon: <ShoppingBag size={18} />,
       image: ecomImg,
       techTags: ['UPI & Razorpay', 'Inventory DB'],
-      features: [
+      features: configServices[1]?.features || [
         'Instant UPI & Card Payment Gateway',
         'Real-Time Product Catalog & Inventory',
         'Automated Order & Invoice System'
@@ -56,13 +61,13 @@ export default function Services({ onContactClick }) {
     {
       id: 'software-1',
       category: 'software',
-      title: 'Custom Software & ERP',
-      pillText: 'Tailored Business Logic',
-      desc: 'Automated CRM, billing portals, inventory trackers, and internal operational systems.',
+      title: configServices[2]?.title || 'Custom Software & ERP',
+      pillText: configServices[2]?.turnaround ? `Delivery: ${configServices[2].turnaround}` : 'Tailored Business Logic',
+      desc: configServices[2]?.desc || 'Automated CRM, billing portals, inventory trackers, and internal operational systems.',
       icon: <Code2 size={18} />,
       image: webappImg,
       techTags: ['PostgreSQL DB', 'Workflow Automation', 'Cloud Node.js'],
-      features: [
+      features: configServices[2]?.features || [
         'Bespoke Business Workflow Automation',
         'Secure Role-Based Admin & Staff Access',
         'Real-Time Invoicing & Inventory DB'
@@ -108,12 +113,14 @@ export default function Services({ onContactClick }) {
       image: seoImg,
       techTags: ['JSON-LD Schema', 'llms.txt AI Standard'],
       features: [
-        'Google Search Console Setup',
-        'Local Schema Markup & Snippets',
-        'llms.txt AI Agent Specification'
+        'Google PageSpeed & Core Web Vitals 100',
+        'Automated SEO Meta Tags & Schema Markup',
+        'Local SEO Map & Regional Keyword Ranking'
       ]
     }
   ];
+
+  const servicesData = defaultServicesData;
 
   const filteredServices = activeTab === 'all' 
     ? servicesData 

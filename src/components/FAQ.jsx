@@ -32,7 +32,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="faq-section reveal reveal-fade-up">
+    <section id="faq" className="faq-section reveal reveal-fade-up">
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <span className="section-label">07 / FAQ</span>

@@ -1,61 +1,55 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Sparkles, Globe, CheckCircle2, ExternalLink, ChevronLeft, ChevronRight } from './Icons';
+import { useConfig } from '../context/ConfigContext';
 
 import rjImg from '../assets/rj (1).png';
 import versatileImg from '../assets/project_versatile.webp';
 import synstarImg from '../assets/synstar.png';
 
 export default function Projects({ onContactClick }) {
+  const { config } = useConfig();
   const [activeTab, setActiveTab] = useState(0);
   const [isFading, setIsFading] = useState(false);
   const timerRef = useRef(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
-  const projectsData = [
+  const defaultImages = [rjImg, versatileImg, synstarImg];
+  const rawProjects = config?.projects && config.projects.length > 0 ? config.projects : [
     {
-      id: 0,
       title: 'RJ Ventures',
       category: 'Business & Investment Ventures',
-      url: 'rjventures.in',
       liveUrl: 'https://rjventures.in/',
-      desc: 'Modern corporate platform built for brand authority, investment portfolio showcases, and direct investor inquiries.',
-      img: rjImg,
-      highlights: [
-        'Multi-Sector Real Estate & Investment Portfolio',
-        'Sub-300ms Speed with Clean React 19 Architecture'
-      ],
-      techStack: ['React 19 SPA', 'Fast CDN Edge', 'Lighthouse 100']
+      tags: ['React 19 SPA', 'Fast CDN Edge', 'Lighthouse 100']
     },
     {
-      id: 1,
       title: 'Versatile Business School',
       category: 'Educational Institute Portal',
-      url: 'versatilebusinessschool.com',
       liveUrl: 'https://versatilebusinessschool.com/',
-      desc: 'Academic institute web portal featuring interactive course catalogs, verified placement statistics, and instant lead capture.',
-      img: versatileImg,
-      highlights: [
-        'Interactive MBA Course Catalog & Placement Records',
-        'Automated Admission Inquiries & 60fps Mobile UX'
-      ],
-      techStack: ['React 19 Modular', 'Course DB', 'Schema SEO']
+      tags: ['React 19 Modular', 'Course DB', 'Schema SEO']
     },
     {
-      id: 2,
       title: 'Synstar Staffing Agency',
       category: 'Global HR & Staffing Platform',
-      url: 'synstarstaffing.com',
       liveUrl: 'https://synstarstaffing.com/',
-      desc: 'Full-stack international staffing portal with global candidate tracking, employer job desks, and real-time backend APIs.',
-      img: synstarImg,
-      highlights: [
-        'Global Candidate & Employer Workflow Pipeline',
-        'High-Speed Node.js REST API with 6ms Latency'
-      ],
-      techStack: ['Full-Stack React', 'Node.js API', 'SSL Verified']
+      tags: ['Full-Stack React', 'Node.js API', 'SSL Verified']
     }
   ];
+
+  const projectsData = rawProjects.map((p, idx) => ({
+    id: idx,
+    title: p.title,
+    category: p.category,
+    url: p.liveUrl ? p.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'villupuramdeveloper.com',
+    liveUrl: p.liveUrl || 'https://villupuramdeveloper.com',
+    desc: p.desc || `Modern web platform built for ${p.title}, featuring high performance, modern responsive UI, and verified SEO indexing.`,
+    img: p.img || defaultImages[idx % defaultImages.length],
+    highlights: p.highlights || [
+      `Engineered for high conversion and verified user engagement`,
+      'Sub-300ms Speed with Clean React 19 Architecture'
+    ],
+    techStack: Array.isArray(p.tags) ? p.tags : ['React 19 SPA', 'Fast CDN Edge', 'Lighthouse 100']
+  }));
 
   const resetAutoCarousel = () => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -119,7 +113,17 @@ export default function Projects({ onContactClick }) {
     touchEndX.current = 0;
   };
 
-  const currentProject = projectsData[activeTab];
+  const safeIndex = (activeTab >= 0 && activeTab < projectsData.length) ? activeTab : 0;
+  const currentProject = projectsData[safeIndex] || {
+    title: 'Client Web Platform',
+    category: 'Full-Stack Solution',
+    url: 'villupuramdeveloper.com',
+    liveUrl: 'https://villupuramdeveloper.com',
+    desc: 'High performance modern digital platform built for business growth.',
+    img: rjImg,
+    highlights: ['Custom React 19 Architecture', 'Sub-300ms Speed & Cloud CDN'],
+    techStack: ['React 19', 'Fast CDN', 'Lighthouse 100']
+  };
 
   return (
     <section id="projects" className="pro-projects-section reveal reveal-scale-in">
