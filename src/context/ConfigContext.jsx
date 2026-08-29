@@ -75,6 +75,15 @@ export function ConfigProvider({ children }) {
     } catch (e) {
       console.warn('Failed to save to localStorage:', e);
     }
+
+    // Persist permanently to src/data/siteConfig.json so all browsers, devices and incognito tabs remain 100% in sync
+    try {
+      fetch('/api/save-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newConfig)
+      }).catch(() => {});
+    } catch (e) {}
   };
 
   const resetConfig = () => {
@@ -84,6 +93,14 @@ export function ConfigProvider({ children }) {
     } catch (e) {
       console.warn('Failed to clear storage:', e);
     }
+
+    try {
+      fetch('/api/save-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(defaultConfig)
+      }).catch(() => {});
+    } catch (e) {}
   };
 
   return (

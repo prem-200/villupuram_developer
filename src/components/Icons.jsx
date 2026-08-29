@@ -44,6 +44,7 @@ export const Phone = createIcon(<><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19
 export const MapPin = createIcon(<><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></>);
 export const Plus = createIcon(<><path d="M5 12h14" /><path d="M12 5v14" /></>);
 export const Minus = createIcon(<><path d="M5 12h14" /></>);
+export const Menu = createIcon(<><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></>);
 export const X = createIcon(<><path d="M18 6 6 18" /><path d="m6 6 12 12" /></>);
 export const Send = createIcon(<><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></>);
 export const Check = createIcon(<><polyline points="20 6 9 17 4 12" /></>);
@@ -172,3 +173,17 @@ export const RedisIcon = ({ size = 22, color = "#dc382d" }) => (
     <path d="M3 17l9 4 9-4-9-4-9 4z" fill="#c0261c" opacity="0.8"/>
   </svg>
 );
+
+export const Star = ({ size = 16, color = "#ffaa40", fill = "#ffaa40" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+  </svg>
+);
+
+export const Quote = ({ size = 20, color = "#ff6b00" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 1-1 2v2c0 1.1.9 2 2 2z" />
+    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 1-1 2v2c0 1.1.9 2 2 2z" />
+  </svg>
+);
+

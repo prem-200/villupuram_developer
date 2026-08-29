@@ -333,7 +333,7 @@ export default function ContactSection() {
               {/* CENTER HUB: Official Brand Logo Emblem */}
               <div className="radar-center-hub">
                 <img 
-                  src={centerLogoImg} 
+                  src={config?.brand?.logo || centerLogoImg} 
                   alt="Villupuram Developer Logo" 
                   className="radar-center-logo-img"
                 />

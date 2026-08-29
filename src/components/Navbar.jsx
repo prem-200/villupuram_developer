@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-const logoImg = '/logo.webp';
+import logoImg from '../assets/header.png';
 import { ArrowRight, Phone } from './Icons';
 import { useConfig } from '../context/ConfigContext';
+import { trackLiveAction } from '../utils/visitorTracker';
 
-export default function Navbar({ onContactClick, activeSection }) {
+export default function Navbar({ onContactClick, activeSection, onNavigatePricing }) {
   const { config } = useConfig();
   const phone = config?.brand?.phone || '+91 63793 48861';
   const phoneTel = phone.replace(/[^0-9+]/g, '');
@@ -24,18 +25,33 @@ export default function Navbar({ onContactClick, activeSection }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const showOnHome = config?.pricingSettings?.showOnHomePage !== false;
+  const enableStandalone = config?.pricingSettings?.enableStandalonePage !== false;
+  const hasPricingEnabled = showOnHome || enableStandalone;
+
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'Services', href: '#services' },
+    ...(hasPricingEnabled ? [{ name: 'Pricing', href: '#pricing', isRoute: !showOnHome && enableStandalone }] : []),
     { name: 'Projects', href: '#projects' },
+    { name: 'Reviews', href: '#reviews' },
     { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' }
   ];
 
-  const handleLinkClick = (e, href) => {
+  const handleLinkClick = (e, item) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const target = document.querySelector(href);
+
+    if (item.isRoute && onNavigatePricing) {
+      trackLiveAction('Navigated to Dedicated Pricing Page', '/pricing');
+      onNavigatePricing();
+      return;
+    }
+
+    trackLiveAction(`Navigated to ${item.name || item} Section`, item.href || '/');
+
+    const target = document.querySelector(item.href || item);
     if (target) {
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
@@ -70,7 +86,7 @@ export default function Navbar({ onContactClick, activeSection }) {
                 <a
                   href={item.href}
                   className={`navbar-link ${isActive ? 'active' : ''}`}
-                  onClick={(e) => handleLinkClick(e, item.href)}
+                  onClick={(e) => handleLinkClick(e, item)}
                 >
                   {item.name}
                 </a>
@@ -97,7 +113,11 @@ export default function Navbar({ onContactClick, activeSection }) {
         {/* Right: Contact info + Button */}
         <div className="navbar-actions">
           
-          <a href={`tel:${phoneTel}`} className="navbar-contact">
+          <a 
+            href={`tel:${phoneTel}`} 
+            className="navbar-contact"
+            onClick={() => trackLiveAction(`Triggered Direct Call to ${phone}`, '/')}
+          >
             <span className="contact-icon-wrapper">
               <Phone size={14} />
             </span>
@@ -109,7 +129,13 @@ export default function Navbar({ onContactClick, activeSection }) {
 
           <div className="navbar-divider divider-desktop"></div>
 
-          <button className="btn btn-primary navbar-cta-btn" onClick={onContactClick}>
+          <button 
+            className="btn btn-primary navbar-cta-btn" 
+            onClick={() => {
+              trackLiveAction('Clicked Navbar "Start a Project" Button', '/');
+              onContactClick();
+            }}
+          >
             Start a Project <ArrowRight className="btn-icon" size={14} />
           </button>
 

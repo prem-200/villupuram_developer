@@ -1,8 +1,11 @@
 import React from 'react';
-import log1Img from '../assets/log1.webp';
+import log1Img from '../assets/header.png';
 import { Sparkles, Code2, CheckCircle2, Zap } from './Icons';
+import { useConfig } from '../context/ConfigContext';
 
 export default function TrustIntro() {
+  const { config } = useConfig();
+
   return (
     <section className="trust-section reveal reveal-scale-in">
       <div className="container trust-split-grid">

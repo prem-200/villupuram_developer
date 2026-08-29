@@ -4,8 +4,7 @@ import {
   ArrowUp, ShieldCheck, CheckCircle2, Instagram, Linkedin, Github 
 } from './Icons';
 import { useConfig } from '../context/ConfigContext';
-
-const logoImg = '/logo.webp';
+import logoImg from '../assets/header.png';
 import footerBg from '../assets/footer_bg.webp';
 
 export default function Footer({ onContactClick }) {

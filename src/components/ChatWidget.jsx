@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageSquareCode, X, RefreshCw, Send } from './Icons';
+import { MessageSquareCode, X, RefreshCw, Send, MessageCircle } from './Icons';
 import { useConfig } from '../context/ConfigContext';
-const logoImg = '/logo.webp';
+import logoImg from '../assets/header.png';
+import { trackLiveAction } from '../utils/visitorTracker';
 
 const FAQ_QA = [
   {
@@ -153,6 +154,8 @@ export default function ChatWidget() {
     setIsTyping(false);
   };
 
+  if (config?.chatWidget?.enabled === false) return null;
+
   return (
     <div className="chat-widget-wrapper" style={{ position: 'fixed', zIndex: 99999, pointerEvents: 'auto' }}>
       
@@ -163,11 +166,11 @@ export default function ChatWidget() {
           {/* Header */}
           <div className="chat-header">
             <div className="chat-header-info">
-              <img src={logoImg} alt="VDP" className="chat-logo" />
+              <img src={logoImg} alt="Villupuram Developer" className="chat-logo" style={{ objectFit: 'contain' }} />
               <div className="chat-status-details">
-                <span className="chat-name">VDP Assistant</span>
+                <span className="chat-name">{agentName}</span>
                 <span className="chat-status">
-                  <span className="chat-status-dot"></span> Online
+                  <span className="chat-status-dot"></span> {config?.chatWidget?.status || 'Online • Fast Reply'}
                 </span>
               </div>
             </div>
@@ -192,10 +195,11 @@ export default function ChatWidget() {
                   {msg.showWhatsApp && (
                     <div style={{ marginTop: '0.75rem' }}>
                       <a
-                        href="https://wa.me/916379348861"
+                        href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="chat-whatsapp-link-btn"
+                        onClick={() => trackLiveAction('Chat Widget WhatsApp CTA Clicked', '/')}
                         style={{
                           display: 'inline-flex',
                           alignItems: 'center',
@@ -211,7 +215,8 @@ export default function ChatWidget() {
                           boxShadow: '0 4px 12px rgba(37, 211, 102, 0.3)'
                         }}
                       >
-                        <span>Chat on WhatsApp (+91 63793 48861)</span>
+                        <MessageCircle size={15} />
+                        <span>Chat on WhatsApp ({phone})</span>
                       </a>
                     </div>
                   )}

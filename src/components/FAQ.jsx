@@ -1,27 +1,35 @@
 import React, { useState } from 'react';
 import { Plus, Minus } from './Icons';
+import { useConfig } from '../context/ConfigContext';
 
 export default function FAQ() {
+  const { config } = useConfig();
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const faqs = [
+  const defaultFaqs = [
     {
+      id: 'faq-1',
       question: 'How long does it take to build a website?',
-      answer: 'Most professional business websites take between 2 to 4 weeks from our initial discovery meeting to launch day. This timeline depends on the complexity of design adjustments, custom features, and the timely provision of copy or content.'
+      answer: 'Most professional business websites take 4 to 6 business days from initial discovery to launch day.'
     },
     {
+      id: 'faq-2',
       question: 'Do you optimize websites for search engines (SEO)?',
-      answer: 'Yes. Every website we compile includes fundamental SEO structuring. We configure semantic HTML, structure descriptive metadata, optimize image payloads for page speed, and ensure perfect mobile responsiveness to help you rank on search engines.'
+      answer: 'Yes. Every website includes Schema JSON, meta descriptions, image compression, and Google Search Console indexing.'
     },
     {
+      id: 'faq-3',
       question: 'Can I update my website content later?',
-      answer: 'Absolutely. We design our platforms with modular React components, making simple updates direct and efficient. If requested, we can also integrate a headless Content Management System (CMS) so you can update text, blogs, or products without writing code.'
+      answer: 'Yes! You can use our dedicated Admin Panel at /admin to update texts, phone numbers, logos, and projects anytime without coding.'
     },
     {
+      id: 'faq-4',
       question: 'Will my website work perfectly on mobile screens?',
-      answer: 'Yes, 100%. We employ a rigorous responsive design approach. Your site is tested across multiple physical device widths (smartphones, tablets, laptops, and ultra-wide screens) to guarantee a consistent, fast, and touch-optimized experience.'
+      answer: 'Yes, 100%. We test and optimize across all iPhone, Android, tablet, and desktop viewports.'
     }
   ];
+
+  const faqs = (config?.faqs && config.faqs.length > 0) ? config.faqs : defaultFaqs;
 
   const toggleFAQ = (index) => {
     if (activeIndex === index) {

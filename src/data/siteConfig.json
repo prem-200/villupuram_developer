@@ -2,6 +2,15 @@
   "adminAuth": {
     "passcode": "Nsprem@200"
   },
+  "announcementBanner": {
+    "badge": "New Client Loadingd",
+    "ctaText": "coming soon ",
+    "text": "hiuyiuyuii",
+    "enabled": false,
+    "style": "laser-ribbon",
+    "colorTheme": "amber",
+    "showCountdown": false
+  },
   "brand": {
     "name": "Villupuram Developer",
     "slogan": "Your Idea. Your Website. Your Digital Presence.",
@@ -15,7 +24,8 @@
       "instagram": "https://instagram.com",
       "linkedin": "https://linkedin.com",
       "github": "https://github.com"
-    }
+    },
+    "logo": "/logo.webp"
   },
   "seo": {
     "metaTitle": "Villupuram Developer | Premier Web & Digital Solutions in Tamil Nadu",
@@ -25,11 +35,18 @@
   },
   "chatWidget": {
     "enabled": true,
-    "agentName": "Senior Developer",
+    "agentName": "Villupuram Developer Bot",
     "agentRole": "Direct Technical Lead",
     "status": "Online • Fast Reply",
     "welcomeMessage": "Hi there! 👋 Looking to launch or redesign your business website? Ask me anything or request a fast 2-hour estimate!",
     "whatsappTemplate": "Hi Villupuram Developer! I would like to discuss my project."
+  },
+  "maintenance": {
+    "enabled": false,
+    "headline": "Scheduled System Upgrade in Progress",
+    "message": "We are currently deploying ultra-fast server edge optimizations and platform updates. We will be back online shortly!",
+    "estimatedReturn": "Back in under 1 hour",
+    "allowAdminAccess": true
   },
   "theme": {
     "accentColor": "#ff6b00",
@@ -89,7 +106,12 @@
       "desc": "High-speed corporate and business websites engineered to establish authority, rank on Google, and convert visitors into paying clients.",
       "turnaround": "4 Days",
       "badge": "HIGH DEMAND",
-      "features": ["React 19 & Vite 8 SPA", "Lighthouse 100 Performance", "Domain & Cloud Deployment", "Bilingual Tamil & English CMS"]
+      "features": [
+        "React 19 & Vite 8 SPA",
+        "Lighthouse 100 Performance",
+        "Domain & Cloud Deployment",
+        "Bilingual Tamil & English CMS"
+      ]
     },
     {
       "id": "ecommerce",
@@ -99,7 +121,12 @@
       "desc": "Scalable online stores with automated order tracking, multi-category inventory, and native Indian payment gateways.",
       "turnaround": "6 Days",
       "badge": "HIGH CONVERSION",
-      "features": ["Instant UPI QR & Razorpay", "Real-Time Inventory Sync", "WhatsApp Order Alerts", "SEO Product Schemas"]
+      "features": [
+        "Instant UPI QR & Razorpay",
+        "Real-Time Inventory Sync",
+        "WhatsApp Order Alerts",
+        "SEO Product Schemas"
+      ]
     },
     {
       "id": "webapps",
@@ -109,7 +136,12 @@
       "desc": "Full-stack software solutions, customer dashboards, automated billing engines, and internal CRM tools built around your exact operations.",
       "turnaround": "8-12 Days",
       "badge": "ENTERPRISE GRADE",
-      "features": ["Role-Based Admin Access", "Real-Time PostgreSQL / Redis", "REST & GraphQL APIs", "Automated PDF Invoicing"]
+      "features": [
+        "Role-Based Admin Access",
+        "Real-Time PostgreSQL / Redis",
+        "REST & GraphQL APIs",
+        "Automated PDF Invoicing"
+      ]
     }
   ],
   "projects": [
@@ -117,22 +149,140 @@
       "id": "rj-ventures",
       "title": "RJ Ventures",
       "category": "Corporate Portal",
-      "tags": ["React 19", "Cloudflare", "Tailwind"],
+      "tags": [
+        "React 19",
+        "Cloudflare",
+        "Tailwind"
+      ],
       "liveUrl": "https://rjventures.in"
     },
     {
       "id": "synstar",
       "title": "Syn Star Staffing",
       "category": "Global Talent Platform",
-      "tags": ["Full-Stack", "ATS Engine", "Next.js"],
+      "tags": [
+        "Full-Stack",
+        "ATS Engine",
+        "Next.js"
+      ],
       "liveUrl": "https://synstarstaffing.com"
     },
     {
       "id": "versatile",
       "title": "Versatile Business School",
       "category": "Academic Portal",
-      "tags": ["CMS", "Admission Engine", "SEO #1"],
+      "tags": [
+        "CMS",
+        "Admission Engine",
+        "SEO #1"
+      ],
       "liveUrl": "https://versatilebschool.com"
+    }
+  ],
+  "pricingSettings": {
+    "showOnHomePage": false,
+    "enableStandalonePage": false
+  },
+  "pricing": [
+    {
+      "id": "starter",
+      "name": "Starter Web Presence",
+      "price": "₹5,999",
+      "billing": "One-Time All-Inclusive",
+      "turnaround": "4 Days Delivery",
+      "badge": "STARTER",
+      "isPopular": false,
+      "features": [
+        "Single-Page Fast React 19 SPA",
+        "Free .com / .in Domain for 1 Year",
+        "Cloudflare Edge SSL & High-Speed CDN",
+        "Direct WhatsApp & Call Lead Triggers",
+        "Google Maps & Local SEO Setup",
+        "100% Mobile & Tablet Responsive"
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Full Business E-Commerce",
+      "price": "₹10,999",
+      "billing": "One-Time All-Inclusive",
+      "turnaround": "6 Days Delivery",
+      "badge": "MOST POPULAR",
+      "isPopular": true,
+      "features": [
+        "Multi-Page High-Conversion Store",
+        "Instant UPI QR & Razorpay Payments",
+        "Full Administrative Control Panel",
+        "Automated WhatsApp Order Alerts",
+        "Google Search Console & Meta Schema",
+        "Lighthouse 100/100 Grade A+ Speed",
+        "Bilingual Tamil + English CMS CMS"
+      ]
+    },
+    {
+      "id": "enterprise",
+      "name": "Custom Software & ERP",
+      "price": "₹29,999",
+      "billing": "Tailored Architecture",
+      "turnaround": "10-14 Days",
+      "badge": "ENTERPRISE",
+      "isPopular": false,
+      "features": [
+        "Bespoke Dashboard & Role-Based Access",
+        "PostgreSQL & Real-Time Cloud DB",
+        "Automated PDF Invoicing & WhatsApp Bot",
+        "Custom APIs & 3rd-Party Integrations",
+        "Dedicated VIP Technical Support 24/7",
+        "Scalable Cloudflare Serverless Backend"
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "rev-1",
+      "clientName": "Rajesh Kumar",
+      "role": "Founder, RJ Ventures",
+      "rating": 5,
+      "projectType": "Corporate Web Portal",
+      "quote": "Prem delivered our full portal in just 4 days with a 100/100 Lighthouse score. Our client inquiries tripled in the first month. Best developer in Tamil Nadu!"
+    },
+    {
+      "id": "rev-2",
+      "clientName": "Suresh Anand",
+      "role": "Director, Syn Star Staffing",
+      "rating": 5,
+      "projectType": "Full-Stack Recruitment ATS",
+      "quote": "The speed and cyber aesthetics of our platform completely blew our clients away. Everything from UPI integration to mobile UX was seamless."
+    },
+    {
+      "id": "rev-3",
+      "clientName": "K. Meenakshi",
+      "role": "Dean, Versatile Educational Institute",
+      "rating": 5,
+      "projectType": "Academic Admission Portal",
+      "quote": "Extremely dedicated and transparent work. The admin panel lets our staff update courses and announcements effortlessly without any technical knowledge."
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "How long does it take to launch our business website?",
+      "answer": "Most custom business websites are delivered and live in 4 to 6 business days. Complex custom web applications or ERPs take 8 to 14 days."
+    },
+    {
+      "id": "faq-2",
+      "question": "Is domain, hosting, and SSL included?",
+      "answer": "Yes! Every website package includes free high-speed Cloudflare edge hosting, TLS 1.3 encryption SSL, and seamless domain configuration."
+    },
+    {
+      "id": "faq-3",
+      "question": "Can I update phone numbers, photos, and prices myself?",
+      "answer": "Yes! With our dedicated Admin Panel at /admin, you can change phone numbers, logos, WhatsApp messages, promo banners, and projects with one click."
+    },
+    {
+      "id": "faq-4",
+      "question": "Will my website rank on Google for local Tamil Nadu searches?",
+      "answer": "Yes. Every website is built with Schema JSON markup, fast OpenGraph tags, semantic HTML5, and registered with Google Search Console."
     }
   ]
 }
