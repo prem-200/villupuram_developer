@@ -1,5 +1,5 @@
 import React from 'react';
-import log1Img from '../assets/header.png';
+import log1Img from '../assets/log1.webp';
 import { Sparkles, Code2, CheckCircle2, Zap } from './Icons';
 import { useConfig } from '../context/ConfigContext';
 
